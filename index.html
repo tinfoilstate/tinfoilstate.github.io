@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TinfoilState - Premium Electromagnetic Protection</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #4a5568;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: #c0c0c0;
+        }
+
+        .cart-btn {
+            background: #4a5568;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .cart-btn:hover {
+            background: #2d3748;
+            transform: translateY(-2px);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #e53e3e;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Products Section */
+        .products {
+            background: white;
+            padding: 4rem 0;
+            margin-top: 2rem;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .products h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #4a5568;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            border-color: #c0c0c0;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .product-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #2d3748;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            color: #e53e3e;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .product-description {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+
+        .product-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-features li {
+            padding: 0.3rem 0;
+            color: #4a5568;
+        }
+
+        .product-features li:before {
+            content: "✓ ";
+            color: #38a169;
+            font-weight: bold;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            background: linear-gradient(45deg, #38a169, #2f855a);
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .add-to-cart:hover {
+            background: linear-gradient(45deg, #2f855a, #276749);
+            transform: translateY(-2px);
+        }
+
+        .add-to-cart:active {
+            transform: translateY(0);
+        }
+
+        /* Features Section */
+        .features {
+            background: #f7fafc;
+            padding: 4rem 0;
+        }
+
+        .features h3 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #4a5568;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .footer-content {
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            margin-bottom: 1rem;
+        }
+
+        .social-links a {
+            color: #c0c0c0;
+            font-size: 1.5rem;
+            margin: 0 1rem;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: white;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .modal h3 {
+            color: #38a169;
+            margin-bottom: 1rem;
+        }
+
+        .close-modal {
+            background: #4a5568;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .product-card {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .product-card:nth-child(1) { animation-delay: 0.1s; }
+        .product-card:nth-child(2) { animation-delay: 0.2s; }
+        .product-card:nth-child(3) { animation-delay: 0.3s; }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">Tinfoil<span>State</span></a>
+                <button class="cart-btn" onclick="toggleCart()">
+                    🛒 Cart
+                    <span class="cart-count" id="cart-count">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Premium Electromagnetic Protection</h1>
+            <p>Defend your thoughts with our scientifically-crafted* aluminum headwear collection</p>
+            <a href="#products" class="cta-button">Shop Protection</a>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="container">
+            <h2>Our Protection Collection</h2>
+            <div class="product-grid">
+                <!-- Men's Tinfoil Hat -->
+                <div class="product-card">
+                    <img src="assets/man-tinfoil-hat.png" alt="Premium Men's Electromagnetic Shield" class="product-image">
+                    <div class="product-title">The Executive Defender</div>
+                    <div class="product-price">$49.99</div>
+                    <div class="product-description">
+                        Professional-grade aluminum protection designed for the discerning gentleman. Perfect for board meetings,
+                        government buildings, and those awkward family dinners when Uncle Bob starts talking about "them."
+                    </div>
+                    <ul class="product-features">
+                        <li>99.7% pure food-grade aluminum construction</li>
+                        <li>Aerodynamic cone design for maximum signal deflection</li>
+                        <li>One size fits most (including large egos)</li>
+                        <li>Scratch-resistant premium finish</li>
+                        <li>CEO-approved confidence boost</li>
+                    </ul>
+                    <button class="add-to-cart" onclick="addToCart('The Executive Defender', 49.99)">Add to Cart</button>
+                </div>
+
+                <!-- Women's Tinfoil Hat -->
+                <div class="product-card">
+                    <img src="assets/women-tinfoil-hat.png" alt="Elegant Women's Mind Shield" class="product-image">
+                    <div class="product-title">The Elegant Protector</div>
+                    <div class="product-price">$54.99</div>
+                    <div class="product-description">
+                        Stylish electromagnetic protection that complements any outfit. From yoga class to PTA meetings,
+                        protect your thoughts while maintaining your sophisticated aesthetic.
+                    </div>
+                    <ul class="product-features">
+                        <li>Fashion-forward reflective aluminum design</li>
+                        <li>Lightweight comfort for all-day wear</li>
+                        <li>Compatible with most hairstyles</li>
+                        <li>Instagram-ready photogenic shine</li>
+                        <li>Blocks mind-reading AND unsolicited advice</li>
+                    </ul>
+                    <button class="add-to-cart" onclick="addToCart('The Elegant Protector', 54.99)">Add to Cart</button>
+                </div>
+
+                <!-- DIY Kit -->
+                <div class="product-card">
+                    <img src="assets/diy-kit.png" alt="Premium DIY Protection Kit" class="product-image">
+                    <div class="product-title">DIY Fortress Kit</div>
+                    <div class="product-price">$29.99</div>
+                    <div class="product-description">
+                        For the hands-on protector! Create unlimited custom protection devices with our premium aluminum starter kit.
+                        Perfect for families, preppers, or anyone who enjoys artisanal conspiracy craft projects.
+                    </div>
+                    <ul class="product-features">
+                        <li>50 feet of premium heavy-duty aluminum foil</li>
+                        <li>Step-by-step protection crafting guide</li>
+                        <li>Multiple fold patterns included</li>
+                        <li>Makes 3-5 standard protection units</li>
+                        <li>Bonus: Emergency signal booster designs</li>
+                    </ul>
+                    <button class="add-to-cart" onclick="addToCart('DIY Fortress Kit', 29.99)">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h3>Why Choose TinfoilState?</h3>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">🛡️</div>
+                    <h4>Premium Protection</h4>
+                    <p>Military-grade* aluminum technology for maximum electromagnetic interference</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">⚡</div>
+                    <h4>Instant Results</h4>
+                    <p>Feel the difference immediately** - peace of mind in seconds</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🎨</div>
+                    <h4>Stylish Design</h4>
+                    <p>Fashion meets function - look good while staying protected</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🚚</div>
+                    <h4>Discreet Shipping</h4>
+                    <p>Plain packaging - because privacy matters (even for shipping)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="social-links">
+                    <a href="#">📧</a>
+                    <a href="#">📱</a>
+                    <a href="#">🌐</a>
+                </div>
+                <p>&copy; 2026 tinfoil.fr - Premium Electromagnetic Protection Solutions</p>
+                <p style="font-size: 0.8rem; opacity: 0.7; margin-top: 1rem;">
+                    *Not actually scientifically proven. **Results may vary. For entertainment purposes only.
+                    Please consult your local government propaganda before use.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Modal -->
+    <div class="modal" id="cart-modal">
+        <div class="modal-content">
+            <h3>Item Added to Cart!</h3>
+            <p id="cart-message"></p>
+            <button class="close-modal" onclick="closeModal()">Continue Shopping</button>
+        </div>
+    </div>
+
+    <script>
+        let cart = [];
+        let cartTotal = 0;
+
+        function addToCart(productName, price) {
+            cart.push({ name: productName, price: price });
+            cartTotal += price;
+
+            // Update cart count
+            document.getElementById('cart-count').textContent = cart.length;
+
+            // Show modal
+            document.getElementById('cart-message').innerHTML = `
+                <strong>${productName}</strong> has been added to your cart!<br>
+                <small>Cart total: $${cartTotal.toFixed(2)}</small>
+            `;
+            document.getElementById('cart-modal').style.display = 'block';
+
+            // Add some fun effects
+            const button = event.target;
+            button.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                button.style.transform = 'scale(1)';
+            }, 150);
+
+            // Animate cart button
+            const cartBtn = document.querySelector('.cart-btn');
+            cartBtn.style.animation = 'none';
+            cartBtn.offsetHeight; // Trigger reflow
+            cartBtn.style.animation = 'pulse 0.5s ease';
+        }
+
+        function toggleCart() {
+            if (cart.length === 0) {
+                alert("Your cart is empty! Add some premium protection first.");
+                return;
+            }
+
+            let cartContents = "Your Protection Arsenal:\n\n";
+            cart.forEach((item, index) => {
+                cartContents += `${index + 1}. ${item.name} - $${item.price}\n`;
+            });
+            cartContents += `\nTotal: $${cartTotal.toFixed(2)}`;
+            cartContents += "\n\n🛡️ Ready to secure your thoughts? 🛡️";
+
+            alert(cartContents);
+        }
+
+        function closeModal() {
+            document.getElementById('cart-modal').style.display = 'none';
+        }
+
+        // Smooth scrolling for CTA button
+        document.querySelector('.cta-button').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector('#products').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+
+        // Add some interactive hover effects
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Easter egg: Konami code for special discount
+        let konamiCode = [];
+        const konamiSequence = [
+            'ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown',
+            'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight',
+            'KeyB', 'KeyA'
+        ];
+
+        document.addEventListener('keydown', function(e) {
+            konamiCode.push(e.code);
+
+            if (konamiCode.length > konamiSequence.length) {
+                konamiCode.shift();
+            }
+
+            if (konamiCode.join(',') === konamiSequence.join(',')) {
+                alert("🎉 CONSPIRACY LEVEL UNLOCKED! 🎉\nSecret Agent Discount: 30% off!\nCode: ILLUMINATI30\n(This is a fake store, but you found the secret!)");
+                konamiCode = [];
+            }
+        });
+
+        // Add CSS animation for cart pulse
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes pulse {
+                0% { transform: scale(1); }
+                50% { transform: scale(1.1); }
+                100% { transform: scale(1); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Welcome message
+        setTimeout(() => {
+            console.log("🛡️ Welcome to TinfoilState! 🛡️");
+            console.log("Protecting minds since... well, since now!");
+            console.log("Try the Konami code for a special surprise! ↑↑↓↓←→←→BA");
+        }, 1000);
+    </script>
+</body>
+</html>
