@@ -508,6 +508,45 @@
         </div>
     </div>
 
+    <!-- Checkout Modal -->
+    <div class="modal" id="checkout-modal">
+        <div class="modal-content" style="max-width: 500px;">
+            <h3>🛡️ Your Protection Arsenal</h3>
+            <div id="cart-items-list" style="text-align: left; margin: 1rem 0;"></div>
+            <hr style="margin: 1rem 0;">
+            <div style="font-weight: bold; font-size: 1.2rem; color: #e53e3e;" id="cart-total"></div>
+
+            <div style="margin: 2rem 0; padding: 1.5rem; background: #f7fafc; border-radius: 10px;">
+                <h4>⚡ Secure Your Arsenal - Payment Required ⚡</h4>
+                <p style="margin: 1rem 0; font-size: 0.9rem;">Support the resistance! Send sats to fund your electromagnetic protection:</p>
+
+                <div style="background: white; padding: 1rem; border-radius: 8px; margin: 1rem 0;">
+                    <img src="assets/wallet.png" alt="Lightning Wallet QR Code" style="width: 200px; height: 200px; margin: 0 auto; display: block;">
+                </div>
+
+                <div style="background: white; padding: 1rem; border-radius: 8px; font-family: monospace; word-break: break-all; font-size: 0.8rem; margin: 1rem 0;">
+                    aglowfoster640@walletofsatoshi.com
+                </div>
+
+                <p style="font-size: 0.8rem; color: #666;">
+                    📱 Scan QR code with your Lightning wallet app<br>
+                    💰 Or copy the address above<br>
+                    ⚡ Funding the revolution, one sat at a time<br>
+                </p>
+                <div style="background: #fff9c4; padding: 1rem; border-radius: 8px; margin: 1rem 0; font-style: italic; font-size: 0.85rem; color: #8b6914;">
+                    📦 <strong>Delivery Note:</strong> Due to the current "economic climate,"
+                    your protection arsenal will be delivered... one day. Trust the process. ✨
+                </div>
+
+            </div>
+
+            <div style="display: flex; gap: 1rem;">
+                <button class="close-modal" onclick="closeCheckoutModal()" style="flex: 1;">Continue Shopping</button>
+                <button onclick="clearCart()" style="flex: 1; background: #e53e3e; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Clear Cart</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         let cart = [];
         let cartTotal = 0;
@@ -546,18 +585,47 @@
                 return;
             }
 
-            let cartContents = "Your Protection Arsenal:\n\n";
-            cart.forEach((item, index) => {
-                cartContents += `${index + 1}. ${item.name} - $${item.price}\n`;
-            });
-            cartContents += `\nTotal: $${cartTotal.toFixed(2)}`;
-            cartContents += "\n\n🛡️ Ready to secure your thoughts? 🛡️";
-
-            alert(cartContents);
+            showCheckoutModal();
         }
 
         function closeModal() {
             document.getElementById('cart-modal').style.display = 'none';
+        }
+
+        function showCheckoutModal() {
+            // Build cart items list
+            let cartItemsHTML = '<div style="max-height: 200px; overflow-y: auto;">';
+            cart.forEach((item, index) => {
+                cartItemsHTML += `
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0; border-bottom: 1px solid #eee;">
+                        <span>${item.name}</span>
+                        <span style="font-weight: bold; color: #e53e3e;">$${item.price.toFixed(2)}</span>
+                    </div>
+                `;
+            });
+            cartItemsHTML += '</div>';
+
+            document.getElementById('cart-items-list').innerHTML = cartItemsHTML;
+            document.getElementById('cart-total').innerHTML = `💰 Total: $${cartTotal.toFixed(2)} USD`;
+            document.getElementById('checkout-modal').style.display = 'block';
+        }
+
+        function closeCheckoutModal() {
+            document.getElementById('checkout-modal').style.display = 'none';
+        }
+
+        function clearCart() {
+            if (confirm('Are you sure you want to clear your cart? Your thoughts will be left unprotected!')) {
+                cart = [];
+                cartTotal = 0;
+                document.getElementById('cart-count').textContent = '0';
+                closeCheckoutModal();
+
+                // Show a fun message
+                setTimeout(() => {
+                    alert('🛡️ Cart cleared! Your mind is now vulnerable to electromagnetic interference. Consider re-protecting yourself soon! 😱');
+                }, 300);
+            }
         }
 
         // Smooth scrolling for CTA button
